@@ -6,6 +6,7 @@ import java.awt.Checkbox;
 import java.awt.CheckboxGroup;
 import java.awt.Choice;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -263,6 +264,14 @@ public class BookMain extends JFrame implements ItemListener, ActionListener{
 	
 	//상품등록 메서드
 	public void regist(){
+		//기존에 등록된 추가된 컴포넌트가 있다면... 컴포넌트 지우기
+		Component[] comp=p_grid.getComponents();
+		System.out.println("포함한 자식은"+comp.length);
+		for(int i=0; i<comp.length; i++){
+			p_grid.remove(0);
+		}
+		
+		
 		//내가 지금 선택한 서브 카테고리 초이스의
 		//index를 구해서, 그 index로 ArrayList를
 		//접근하여 객체를 반환 받으면 정보를
@@ -399,7 +408,7 @@ public class BookMain extends JFrame implements ItemListener, ActionListener{
 	((TablePanel) p_table).table.updateUI();// 테이블 경신
 	
 	((GridPanel) p_grid).loadData();//다시 조회
-	((GridPanel) p_grid).repaint();//카드 갱신
+	
 	}
 	
 	public static void main(String[] args) {
